@@ -7,7 +7,7 @@ classes = ['table', 'table-striped', 'table-bordered', 'table-condensed']
 class ResultTable(Table):
     classes = classes
     name = LinkCol('Name', 'items', url_kwargs=dict(identifier='id'), attr='name')
-    location = LinkCol('Location', 'locations', url_kwargs=dict(identifier='id'), attr='location.nom')
+    location = LinkCol('Location', 'locations', url_kwargs=dict(identifier='location.id'), attr='location.nom')
 
 
 class LocationTable(Table):

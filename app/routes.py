@@ -5,6 +5,7 @@ from flask_table import Table, Col, LinkCol
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 from werkzeug.wrappers import Response
+from sqlalchemy import or_
 
 
 
@@ -144,7 +145,7 @@ def search():
     objects = []
     if form.validate_on_submit():
         stringsearch = form.stringsearch.data
-        objects = db.session.query(Item).filter(Item.name.contains(stringsearch))
+        objects = db.session.query(Item).filter(or_(Item.name.contains(stringsearch),Item.comment.contains(stringsearch)))
     table = ResultTable(objects)
 
     return render_template('search.html', form=form, table=table)
