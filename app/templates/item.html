@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
+<div class="container">
     
         {% if form %} <form method="post"> {{ form.csrf_token }} <h3> {{ form.name }}     </h3> {{ form.submit }}
         {% else %} <h3> {{ item.name }}  
@@ -74,6 +74,7 @@
 
 
 {% block scripts %}
+    {{ super() }}
     {% if form %}
         <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"

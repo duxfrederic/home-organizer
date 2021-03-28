@@ -30,6 +30,7 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'<User {self.username}, id no {self.id}, registered on {self.timestamp}>'
 
+
 class Item(db.Model):
     id           = db.Column(db.Integer, primary_key=True)
     created      = db.Column(db.DateTime, default=datetime.utcnow)
@@ -45,6 +46,7 @@ class Item(db.Model):
         return f"Objet {self.name}, se trouve: {self.location.__repr__()}"
     def __str__(self):
         return self.__repr__()
+
 
 class Location(db.Model):
     id        = db.Column(db.Integer, primary_key=True)

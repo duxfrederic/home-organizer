@@ -1,20 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user,\
                         login_required
-from flask_table import Table, Col, LinkCol
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
-from werkzeug.wrappers import Response
 from sqlalchemy import or_
 
 
-
-from glob import glob
-from os.path import join, basename
+from os.path import join
 from datetime import datetime
-from random import choice
-import csv
-from io import StringIO
 
 
 from app import app, db, Config
@@ -91,17 +84,20 @@ def add_object():
         filename = ''
 
       # add to database:
+      now = datetime.now()
       new = Item(name=name,
                 comment=comment,
                 number=number,
                 item_location=location,
                 item_creator=current_user,
                 photopath=filename,
-                created=datetime.now(),
+                created=now,
                 lastmodified=datetime.now())
       db.session.add(new)
       db.session.commit()
       flash("Nouvel objet ajouté !")
+      new = db.session.query(Item).filter(Item.name==name).filter(Item.created==now).first()
+      return redirect(f'/items/{new.id}')
 
     return render_template('add_object.html', form=form)
 
