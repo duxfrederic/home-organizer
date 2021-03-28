@@ -1,5 +1,5 @@
 # home-organizer
-
+A small flask-bootstrap app to help with holding an inventory. 
 ## Deployment 
 Start by creating an environment to run this and installing the dependencies:
 ```bash
