@@ -133,3 +133,5 @@ app.db
 # images
 app/static/locations_pictures/*
 app/static/items_pictures/*
+# migration
+migrations/
