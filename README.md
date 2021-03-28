@@ -23,6 +23,7 @@ $ mkdir -p app/static/locations_pictures app/static/items_pictures
 
 You can now run the development version with `flask run`. For production, use e.g. `gunicorn`:
 ```bash
-$ /usr/bin/gunicorn -b 0.0.0.0:5000 -w 2 home-organizer:app
+$ pip install gunicorn
+$ /usr/bin/gunicorn -b 0.0.0.0:5000 -w 2 app:app
 ```
 This can be easily made to start automatically with e.g. `systemctl`. A reverse proxy will be useful if you want the app to be accessible on a certain site on the usual http or https ports. 
