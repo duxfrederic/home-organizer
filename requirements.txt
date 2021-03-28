@@ -8,3 +8,4 @@ werkzeug
 flask_bootstrap
 flask_migrate
 flask_sqlalchemy
+python-dotenv

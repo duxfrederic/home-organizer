@@ -5,7 +5,7 @@ from wtforms import StringField, PasswordField, BooleanField, \
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, ValidationError, EqualTo
 
-from app.models import User, Location, Item, etages
+from app.models import User, Location, Item, etages, buildings
 
 
 class RegistrationForm(FlaskForm):
@@ -44,8 +44,8 @@ class AddItem(FlaskForm):
 
 class AddLocation(FlaskForm):
     name = StringField("Nom: ", validators=[DataRequired()])
-    batiment = SelectField("Batiment: ", choices=[("Maison", "Maison"),  ("Garage","Garage"), ("Cabane","Cabane"), ("Dehors","Dehors")])
-    etage = SelectField("Étage: ", choices=[(1, etages[1]), (0, etages[0]), (2, etages[2]), (3, etages[3])])
+    batiment = SelectField("Batiment: ", choices=[(b,b) for b in buildings])
+    etage = SelectField("Étage: ", choices=[(k, i) for k,i in etages.items()])
     piece = StringField("Pièce: ",  validators=[DataRequired()])
     description = StringField("Description: ")
     photo = FileField("Photo")

@@ -8,8 +8,8 @@ from flask_login import UserMixin
 def load_user(id):
     return User.query.get(int(id))
 
-etages = {0: "sous-sol", 1:"rez-de-chaussée", 2:"1er étage", 3:"grenier"}
-
+etages = {1:"rez-de-chaussée", 0: "sous-sol", 2:"1er étage", 3:"grenier"}
+buildings = ["Maison", "Garage", "Cabane", "Dehors"]
 
 
 class User(UserMixin, db.Model):
