@@ -39,7 +39,7 @@ class AddItem(FlaskForm):
     location = QuerySelectField(query_factory=lambda: Location.query.all(), validators=[DataRequired()])
     comment = StringField("Commentaire: ")
     photo = FileField("Photo")
-    submit = SubmitField('Ajouter!')
+    submit = SubmitField('Sauver')
 
 
 class AddLocation(FlaskForm):
@@ -49,4 +49,8 @@ class AddLocation(FlaskForm):
     piece = StringField("Pièce: ",  validators=[DataRequired()])
     description = StringField("Description: ")
     photo = FileField("Photo")
-    submit = SubmitField('Ajouter!')
+    submit = SubmitField('Sauver')
+
+class DeleteForm(FlaskForm):
+    really = BooleanField("Supprimer cet object, vraiment?", default=False)
+    submit = SubmitField("Supprimer")

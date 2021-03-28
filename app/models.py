@@ -32,6 +32,8 @@ class User(UserMixin, db.Model):
 
 class Item(db.Model):
     id           = db.Column(db.Integer, primary_key=True)
+    created      = db.Column(db.DateTime, default=datetime.utcnow)
+    lastmodified = db.Column(db.DateTime, default=datetime.utcnow)
     name         = db.Column(db.String(128))
     comment      = db.Column(db.String(256), default="")
     number       = db.Column(db.Integer, default=1)

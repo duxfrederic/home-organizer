@@ -2,31 +2,68 @@
 
 {% block content %}
 <div>
-    <h3> {{ item.name }} </h3>
+    
+        {% if form %} <form method="post"> {{ form.csrf_token }} <h3> {{ form.name }}     </h3> {{ form.submit }}
+        {% else %} <h3> {{ item.name }}  
+                        <a href="modify/{{ item.id }}"><button type="button" class="btn btn-primary">Modifier</button></a> 
+                        <a href="delete/{{ item.id }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                    </h3>
+        {% endif %}
+    
     <table class="table table-hover">
-        <thead> <tr> <th> Champs </th> <th> Valeur </th></tr></thead>
+        <thead> <tr> <th> Champs </th> <th> Valeur </th> </tr></thead>
         <tbody>
             <tr>
               <td> Commentaire </td> 
-              <td> {{ item.commentaire }} </td>
+              {% if form %} 
+              <td> {{ form.comment }}</td>
+              {% else %}
+              <td> {{ item.comment }} </td>
+              {% endif %}
             </tr>
             <tr>
                 <td> Nombre </td> 
+                {% if form %} 
+                <td> {{ form.number }}</td>
+                {% else %}
                 <td> {{ item.number }} </td>
+                {% endif %}
             </tr>
             <tr>
                 <td> Rangement </td> 
+                {% if form %} 
+                <td> {{ form.location }}</td>
+                {% else %}
                 <td> {{ item.location }} </td>
+                {% endif %}
             </tr>
             <tr>
                 <td> Créé par  </td> 
                 <td> {{ item.item_creator.username }} </td>
             </tr>
+            <tr>
+                <td> Créé le  </td> 
+                <td> {{ item.created }} </td>
+            </tr>
+            <tr>
+                <td> Dernière modification </td>
+                <td> {{ item.lastmodified }} </td>
+            </tr>
         </tbody>
     </table>
+    {% if form %} 
+    <table class="table table-hover">
+     <tbody>
+        <tr>
+           <td>Nouvelle photo: </td>
+           <td> {{ form.photo }}</td>
+        </tr>
+    </tbody>
+    </table>
+    </form>
+    {% endif %}
     {% if path %}
     <div>
-     <h4> Photo: </h4>
      <img src="{{ url_for('static', filename=path) }}" style="width: 65%; height: auto; display:block; margin-left:auto; margin-right:auto;">
     </div>
     {% endif %}
@@ -34,3 +71,26 @@
 </div>
 
 {% endblock %}
+
+
+{% block scripts %}
+    {% if form %}
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#location').select2({  // init Select2 on form's name field
+                    placeholder: "{{ form.location.label.text }}",
+                    allowClear: true,
+                    "width": "style"
+                });
+            });
+            </script>
+    {% endif %}
+{% endblock %}
+

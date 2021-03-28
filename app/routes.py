@@ -18,7 +18,7 @@ from io import StringIO
 
 
 from app import app, db, Config
-from app.forms import LoginForm, RegistrationForm, SearchItem, AddItem, AddLocation
+from app.forms import LoginForm, RegistrationForm, SearchItem, AddItem, AddLocation, DeleteForm
 from app.models import User, Location, Item
 from app.tables import ResultTable, LocationTable
 
@@ -96,7 +96,9 @@ def add_object():
                 number=number,
                 item_location=location,
                 item_creator=current_user,
-                photopath=filename)
+                photopath=filename,
+                created=datetime.now(),
+                lastmodified=datetime.now())
       db.session.add(new)
       db.session.commit()
       flash("Nouvel objet ajouté !")
@@ -154,9 +156,64 @@ def search():
 @app.route('/items/<identifier>')
 def items(identifier):
   item = db.session.query(Item).filter(Item.id==int(identifier)).first()
+  path = item.photopath   
+  path = path.replace('app/static/', '')
+  return render_template('item.html', item=item, path=path, form=False)
+
+
+@app.route('/items/modify/<identifier>', methods=['GET', 'POST'])  
+@login_required
+def modifyItem(identifier):
+  item = db.session.query(Item).filter(Item.id==int(identifier)).first()
   path = item.photopath 
   path = path.replace('app/static/', '')
-  return render_template('item.html', item=item, path=path)
+  form = AddItem(location=item.location, number=item.number, name=item.name, comment=item.comment)
+  if form.validate_on_submit():
+    if form.name.data:
+      item.name = form.name.data 
+    if form.number.data:
+      item.number = form.number.data 
+    if form.location.data:
+      item.location = form.location.data 
+    if form.comment.data:
+      item.comment = form.comment.data 
+    # build filename for pic:      
+    if form.photo.data:
+      timestamp = datetime.strftime(datetime.now(), "%Y_%m_%d_%H_%M_%S")
+      filename = secure_filename(f"{name}_{timestamp}.jpg")
+      filename = join(Config.ITEMS_PICTURES, filename)
+      # save pic:
+      form.photo.data.save(filename)
+      item.photopath = filename
+    else:
+      filename = ''
+    # add to database:
+    item.lastmodified = datetime.now()
+    db.session.add(item)
+    db.session.commit()
+    flash(f"Objet {item.name} modifié !")  
+    return redirect(f'/items/{item.id}')
+  else:
+    for fieldName, errorMessages in form.errors.items():
+      for err in errorMessages:
+        flash(err)
+  return render_template('item.html', item=item, path=path, form=form)
+
+@app.route('/items/delete/<identifier>', methods=['GET', 'POST'])  
+@login_required
+def deleteItem(identifier):
+  item = db.session.query(Item).filter(Item.id==int(identifier)).first()
+  form = DeleteForm()
+  if form.validate_on_submit():
+    if form.really.data:
+      db.session.delete(item)
+      db.session.commit()
+      flash(f"{item.name} supprimé!")
+      return redirect('/index')
+    else:
+      flash(f"{item.name} préservé")
+      return redirect(f'/items/{item.id}')
+  return render_template('delete.html', form=form)
 
 
 @app.route('/locations/<identifier>')
