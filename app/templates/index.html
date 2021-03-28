@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div>
-		<h1>Grand Organisateur</h1>
+
+    <div class="panel panel-default">
+	<div class="panel-heading">
+	  <h1 class="panel-title">Grand Organisateur</h1>
 	</div>
-	{% if current_user.username %}
-	<div>
-		<h2> Bienvenue, {{ current_user.username }}! </h2>
-		<p> Tu as déjà classé ou modifié {{ ncurrent }} objets.</p>
+	<div class="panel-body">
+		{% if current_user.username %}
+		Bienvenue, {{ current_user.username }}! Tu as déjà classé ou modifié {{ ncurrent }} objets. 
+		{% else %}
+		Appuie sur login pour ajouter des trucs. 
+		{% endif %}
 	</div>
-	{% endif %}
+	<div class="list-group">
+		<a href="search" class="list-group-item clearfix list-group-item-success" style="padding: 25px 30px;">Recherche objet</a>
+		<a href="add_object" class="list-group-item list-group-item-info" style="padding: 25px 30px;">Ajout objet</a>
+		<a href="add_location" class="list-group-item list-group-item-warning" style="padding: 25px 30px;">Ajout rangement</a>
+		<a href="list_locations" class="list-group-item list-group-item-danger" style="padding: 25px 30px;">Liste des rangements</a>
+	  </div>
 {% endblock %}
