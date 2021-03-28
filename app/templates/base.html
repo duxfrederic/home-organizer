@@ -30,48 +30,8 @@
 {% endwith %}
 </div>
 {% endblock %}
-<!---
-<nav class="navbar-expand-lg navbar-light bg-light"></nav>
-  <a class="navbar-brand" href="#">Menu</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
-      </li>
-      {% if not current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-        </li>
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('add_object') }}">Ajouter objet</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('add_location') }}">Ajouter rangement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('search') }}">Chercher objet</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
-</nav>
- ---> 
 
 
 
-
-<div class="container" style="padding: 10px; "></div>
-  {% block content %}
-  {% endblock %}
-</div>
-
-
-
+{% block content %}
+{% endblock %}
