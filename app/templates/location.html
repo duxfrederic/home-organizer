@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3> {{ location.nom }} </h3>
+    <table class="table">
+        <thead> <tr> <th> Champs </th> <th> Valeur </th></tr></thead>
+        <tbody>
+            <tr>
+              <td> Bâtiment </td> 
+              <td> {{ location.batiment }} </td>
+            </tr>
+            <tr>
+                <td> Étage </td> 
+                <td> {{ location.etage }} </td>
+            </tr>
+            <tr>
+                <td> Pièce </td> 
+                <td> {{ location.piece }} </td>
+            </tr>
+            <tr>
+                <td> Description </td> 
+                <td> {{ location.description }} </td>
+            </tr>
+            <tr>
+                <td> Créé par </td> 
+                <td> {{ location.location_creator.username }} </td>
+            </tr>
+        </tbody>
+    </table>
+    {% if path %}
+    <div>
+     <h4> Photo: </h4>
+     <img src="{{ url_for('static', filename=path) }}" style="width: 80%; height: auto;">
+    </div>
+    {% endif %}
+    <h3> Objets stockés ici:  </h3>
+    {{ table }}
+</div>
+
+{% endblock %}

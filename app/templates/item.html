@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3> {{ item.name }} </h3>
+    <table class="table">
+        <thead> <tr> <th> Champs </th> <th> Valeur </th></tr></thead>
+        <tbody>
+            <tr>
+              <td> Commentaire </td> 
+              <td> {{ item.commentaire }} </td>
+            </tr>
+            <tr>
+                <td> Nombre </td> 
+                <td> {{ item.number }} </td>
+            </tr>
+            <tr>
+                <td> Rangement </td> 
+                <td> {{ item.location }} </td>
+            </tr>
+            <tr>
+                <td> Créé par  </td> 
+                <td> {{ item.item_creator.username }} </td>
+            </tr>
+        </tbody>
+    </table>
+    {% if path %}
+    <div>
+     <h4> Photo: </h4>
+     <img src="{{ url_for('static', filename=path) }}" style="width: 65%; height: auto; display:block; margin-left:auto; margin-right:auto;">
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

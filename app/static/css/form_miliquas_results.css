@@ -1,0 +1,15 @@
+
+table.databaseform {
+text-align: left; 
+padding:10px; 
+color:white; 
+width:600px;
+vertical-align:top;
+}
+
+th {
+vertical-align:top;
+horizontal-align:left;
+padding:5px;
+}
+

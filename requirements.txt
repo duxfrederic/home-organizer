@@ -1,0 +1,10 @@
+flask_nav
+flask_mobility
+wtforms
+flask_wtf
+flask_login
+flask_table
+werkzeug
+flask_bootstrap
+flask_migrate
+flask_sqlalchemy

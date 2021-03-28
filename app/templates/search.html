@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h1> Recherche </h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.stringsearch.label }} <br>
+            {{ form.stringsearch(size=32) }} <br>
+            {% for error in form.stringsearch.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> 
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+<div>
+    <!-- 
+    <table>
+        <thead> <tr> <th> Nom </th> <th> Nombre </th> <th> Rangement </th></tr></thead>
+        <tbody>
+            {% for obj in objects %}
+            <tr>
+              <td> <a href="display/item{{obj.id}}">{{ obj.name }}</a> </td> 
+              <td> {{ obj.number }} </td>
+              <td> <a href="display/location{{obj.location.id}}">{{ obj.location }}</a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    -->
+    {{ table }}
+</div>
+
+{% endblock %}

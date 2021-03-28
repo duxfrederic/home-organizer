@@ -1,0 +1,201 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+* {box-sizing: border-box;}
+
+body{
+	background: #42465a;
+}
+
+.container{
+	top: 1%;
+	width: 100%;
+	height: 100%;
+	background: #42465a;
+}
+.containerb{
+	top: 1%;
+	width: 100%;
+	height: 5%;
+	background: #42465a;
+}
+
+.active a{
+	color: #f17575d2 !important;
+}
+
+.h-menu{
+	background: #42465a;
+	color: #fff;
+	float:right;
+}
+
+.menu{
+	width: 100%;
+	float: right;
+	height:20%
+}
+
+.menu ul{
+	float:right;
+	display: inline-flex;
+	margin: 50px 85px 75px 100px;
+}
+.menu ul li{
+	margin: 0 20px;
+	list-style: none;
+	color: #b2b1b1;
+	cursor: pointer;
+}
+
+.menu ul li a{
+	margin: 0 20px;
+	list-style: none;
+	color: #b2b1b1;
+	cursor: pointer;
+}
+
+.menu ul li a{
+	margin: 0 20px;
+	list-style: none;
+	color: #b2b1b1;
+	cursor: pointer;
+}
+
+
+
+.banner{
+	width: 80%;
+	height: 70%;
+	top: 25%;
+	left: 130px;
+	position: absolute;
+	color: #fff;
+}
+
+.data {
+	width: 100%;
+	text-align: left;
+}
+
+.data-cls-magnifier{
+   width: 100%;
+}
+
+.register{
+	color:#fff;
+}
+
+.imageinfo{
+	margin: 80px;
+	text-align: center;
+}
+
+.app-text {
+	vertical-align:top;
+	width: 40em;
+	display:inline-block;
+}
+
+.app-text *{
+	margin: 30px 40px 40px;
+	width: auto;
+}
+
+.app-title{
+	.app-text;
+	width:100%;
+}
+
+.app-text h1{
+	font-size: 48px;
+	position: relative;
+	color: #fff;
+}
+
+.app-text h2{
+	font-size: 23px;
+	position: relative;
+	color: #fff;
+}
+
+.app-text p{
+	width: 35em;
+	font-size: 16px;
+	line-height: 25px;
+	color: #919191;
+	position: relative;
+}
+.app-text ul{
+	color: #919191;
+}
+
+
+.user-text{
+	margin: 30px 40px 40px;
+	height:100px;
+	float:left;
+}
+
+.user-text h1{
+	color:#fff;
+}
+.user-text h2{
+	color:#fff;
+}
+
+.user-text p{
+   color:#aaa;
+}
+
+.decide_button{
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.decide_button:hover{
+	background-color: rgb(104, 180, 107);
+}
+
+.boxa:link, .boxa:visited {
+	background-color: #3643f4;
+	color: white;
+	padding: 14px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 10px;
+  }
+
+.boxa:hover, .boxa:active {
+	background-color: #6a73f0;
+  }
+
+.stamp{
+	width: 40px;
+	height: 40px;
+	z-index: 20;
+}
+.stamp:hover {
+	width: 60px;
+	height: 60px;
+}
+/* for the list of reviews */
+
+
+.trElementEmulation li {
+    list-style:none;
+	width:200em;
+	display: inline-block;
+}
+
+

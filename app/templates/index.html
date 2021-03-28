@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div>
+		<h1>Grand Organisateur</h1>
+	</div>
+	{% if current_user.username %}
+	<div>
+		<h2> Bienvenue, {{ current_user.username }}! </h2>
+		<p> Tu as déjà classé ou modifié {{ ncurrent }} objets.</p>
+	</div>
+	{% endif %}
+{% endblock %}
