@@ -16,6 +16,10 @@ $ flask db init
 $ flask db migrate -m "creation of the database"
 $ flask db upgrade
 ```
+One more thing, create the directories that will contain the pictures:
+```bash
+$ mkdir -p app/static/locations_pictures app/static/items_pictures
+```
 
 You can now run the development version with `flask run`. For production, use e.g. `gunicorn`:
 ```bash
