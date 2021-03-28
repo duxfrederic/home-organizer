@@ -26,4 +26,7 @@ You can now run the development version with `flask run`. For production, use e.
 $ pip install gunicorn
 $ gunicorn -b 0.0.0.0:5000 -w 2 app:app
 ```
-This can be easily made to start automatically with e.g. `systemctl`. A reverse proxy will be useful if you want the app to be accessible on a certain site on the usual http or https ports. 
+This can be easily made to start automatically with e.g. `systemctl`. A reverse proxy will be useful if you want the app to be accessible on a certain site on the usual http or https ports. (Or you can simply run gunicorn on port 80.)
+
+## Backup
+You only need to backup `app.db`, `app/static/locations_pictures` and `app/static/items_pictures`. 
